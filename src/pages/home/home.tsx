@@ -6,7 +6,7 @@ export default function HomePage() {
   const { background } = useStore();
 
   return (
-    <div className='animate-show h-screen flex centered'>
+    <div className='h-screen flex centered'>
       <img src={background} alt='bg' className='fixed object-contain w-full h-full z-[-1] select-none' />
 
       <section className='w-full'>
