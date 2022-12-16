@@ -54,7 +54,7 @@ export default function BackgroundSection() {
           />
 
           {background ? (
-            <div>
+            <div className='animate-show'>
               <div
                 role='button'
                 onClick={openFileDialog}

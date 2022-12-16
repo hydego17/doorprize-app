@@ -77,7 +77,7 @@ export default function FormSection() {
       </header>
       <div className='mt-8'>
         {showParticipants && (
-          <div className='bg-white border-2 rounded divide-y max-h-[500px] overflow-auto'>
+          <div className='animate-show bg-white border-2 rounded divide-y max-h-[500px] overflow-auto'>
             <table className='table-container w-full'>
               <thead className='bg-slate-300'>
                 <tr>
@@ -105,7 +105,7 @@ export default function FormSection() {
       </div>
       <div className='mt-8'>
         {isEdit ? (
-          <form onSubmit={handleSaveInput} className='space-y-4'>
+          <form onSubmit={handleSaveInput} className='animate-show space-y-4'>
             <div>
               <textarea
                 autoFocus
@@ -113,6 +113,7 @@ export default function FormSection() {
                   e.currentTarget.scrollIntoView();
                 }}
                 name='participant'
+                placeholder='copy from sheet + paste here'
                 value={input}
                 onChange={(e) => handleChange(e.target.value)}
                 className={cx(
@@ -130,7 +131,7 @@ export default function FormSection() {
             </button>
           </form>
         ) : (
-          <div>
+          <div className='animate-show'>
             <button onClick={() => setIsEdit(true)} className='btn w-full'>
               {showParticipants ? 'New Participants' : 'Add Participant'}
             </button>

@@ -23,17 +23,6 @@ h3 {
   @apply font-semibold leading-tight;
 }
 
-@keyframes show {
-  to {
-    opacity: 100;
-  }
-}
-
-.animate-show {
-  @apply opacity-0;
-  animation: show 0.35s forwards;
-}
-
 button.btn {
   @apply transition-colors;
   @apply bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded;
@@ -45,9 +34,20 @@ button.btn-outline {
 }
 
 button:disabled {
-  @apply cursor-not-allowed bg-slate-800 hover:bg-slate-800 opacity-60;
+  @apply cursor-not-allowed bg-slate-400 hover:bg-slate-400;
 }
 
 .table-container {
   @apply overflow-auto smooth-scrollbar;
+}
+
+@keyframes show {
+  to {
+    opacity: 100;
+  }
+}
+
+.animate-show {
+  @apply opacity-0;
+  animation: show 0.3s forwards;
 }

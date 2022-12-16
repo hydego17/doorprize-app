@@ -9,13 +9,13 @@ export default function RandomReveal() {
   const setStore = useUpdateStore();
   const { participants } = useStore();
 
-  const showSlot = !!participants.length;
+  const isReady = !!participants.length;
   const maxDigits = participants[0]?.slot?.length;
 
   const [winner, setWinner] = useState<Participant | undefined>();
 
   const handleStart = () => {
-    if (!showSlot) return;
+    if (!isReady) return;
 
     let maxNumber = participants.length;
     let generatedIndex = getRandomInt(1, maxNumber);
@@ -62,15 +62,15 @@ export default function RandomReveal() {
               key={id}
               className='bg-white border flex-1 aspect-square w-full min-w-[60px] lg:min-w-[100px] overflow-hidden rounded m-1 centered'
             >
-              <div className='centered text-5xl font-bold'>{text}</div>
+              <div className='centered text-3xl lg:text-5xl font-bold'>{text}</div>
             </div>
           );
         })}
       </div>
 
       <div className='mt-4 space-y-4'>
-        <button className='btn w-full' onClick={handleStart}>
-          Play
+        <button disabled={!isReady} className='btn w-full' onClick={handleStart}>
+          Start
         </button>
       </div>
     </div>
