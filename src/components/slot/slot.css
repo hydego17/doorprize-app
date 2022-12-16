@@ -1,0 +1,15 @@
+.doors {
+  display: flex;
+}
+
+.door {
+  @apply bg-white border flex-1 aspect-square w-full min-w-[60px] lg:min-w-[100px] overflow-hidden rounded m-1;
+}
+
+.boxes {
+  transition: transform 1s ease-in-out;
+}
+
+.box {
+  @apply centered text-3xl lg:text-4xl;
+}
