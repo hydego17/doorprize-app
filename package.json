@@ -1,7 +1,8 @@
 {
   "name": "speenwheel-app",
-  "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "description": "Doorprize App",
+  "author": "Umma Ahimsha",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,7 +10,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "framer-motion": "^7.10.2",
     "jotai": "^1.11.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
