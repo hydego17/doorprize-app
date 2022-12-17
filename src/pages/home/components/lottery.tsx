@@ -2,51 +2,18 @@ import { useState } from 'react';
 import { useRandomReveal } from 'react-random-reveal';
 import Confetti from 'react-confetti';
 import { TbX } from 'react-icons/tb';
+
 import { useStore, useUpdateStore } from '@/store';
 import { createAudio } from '@/utils/audio';
 import { getRandomInt } from '@/utils';
 import type { Participant } from '@/types';
 import Modal from '@/components/modal';
 
-const winnerAudio = createAudio('winner');
-
 const slotAudio = createAudio('slot', {
-  sprite: {
-    slot: [0, 4055],
-  },
+  sprite: { slot: [0, 4055] },
 });
 
-const SlotBoxes = ({ characters }) => {
-  return (
-    <div className='flex'>
-      {characters.map((text, i) => {
-        let id = `${String(text)}-${i}`;
-        return (
-          <div
-            key={id}
-            className='bg-white border flex-1 aspect-square w-full min-w-[60px] lg:min-w-[100px] overflow-hidden rounded m-1 centered'
-          >
-            <div className='centered text-3xl lg:text-5xl font-bold'>{text}</div>
-          </div>
-        );
-      })}
-    </div>
-  );
-};
-
-const NumberSlot = ({ number, onComplete }) => {
-  const winnerSlotNumber = useRandomReveal({
-    isPlaying: true,
-    duration: 4,
-    characters: number,
-    revealEasing: 'easeOutQuad',
-    characterSet: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
-    revealDuration: 0.025,
-    onComplete,
-  });
-
-  return <SlotBoxes characters={winnerSlotNumber} />;
-};
+const winnerAudio = createAudio('winner');
 
 const statusLabelMap = {
   loading: 'LOADING...',
@@ -117,7 +84,7 @@ export default function Lottery() {
         </button>
       </div>
 
-      <Modal opened={winnerModalOpened} withOverlay={true} overlayBlur={false}>
+      <Modal opened={winnerModalOpened} closeOnClickOutside={false}>
         <div className='text-center p-8 relative'>
           <button
             role='button'
@@ -147,3 +114,35 @@ export default function Lottery() {
     </div>
   );
 }
+
+const SlotBoxes = ({ characters }) => {
+  return (
+    <div className='flex'>
+      {characters.map((text, i) => {
+        let id = `${String(text)}-${i}`;
+        return (
+          <div
+            key={id}
+            className='bg-white border flex-1 aspect-square w-full min-w-[60px] lg:min-w-[100px] overflow-hidden rounded m-1 centered'
+          >
+            <div className='centered text-3xl lg:text-5xl font-bold'>{text}</div>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+const NumberSlot = ({ number, onComplete }) => {
+  const winnerSlotNumber = useRandomReveal({
+    isPlaying: true,
+    duration: 4,
+    characters: number,
+    revealEasing: 'easeOutQuad',
+    characterSet: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
+    revealDuration: 0.025,
+    onComplete,
+  });
+
+  return <SlotBoxes characters={winnerSlotNumber} />;
+};

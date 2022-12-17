@@ -6,10 +6,7 @@ interface ModalProps {
   children?: React.ReactNode;
   opened: boolean;
   onClose?(): void;
-  withCloseButton?: boolean;
-  withOverlay?: boolean;
   closeOnClickOutside?: boolean;
-  overlayBlur?: boolean;
   zIndex?: number;
 }
 
@@ -17,24 +14,12 @@ interface ModalProps {
  * Generic modal component used in our application.
  */
 const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
-  (
-    {
-      children,
-      opened,
-      withOverlay = true,
-      onClose = () => null,
-      closeOnClickOutside = true,
-      overlayBlur = true,
-      zIndex,
-      ...props
-    },
-    ref
-  ) => {
+  ({ children, opened, onClose, closeOnClickOutside = true, zIndex, ...props }, ref) => {
     /**
      * Handle close modal
      */
     const handleClose = () => {
-      onClose();
+      onClose && onClose();
     };
 
     /**
@@ -48,13 +33,7 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     return (
       <div ref={ref} role='dialog' data-opened={opened} style={{ zIndex }} className={cx(s.modal)} {...props}>
         {/* Modal Overlay */}
-        {withOverlay && (
-          <div
-            key='modal-overlay'
-            onClick={handleMaskClick}
-            className={cx(s.overlay, overlayBlur && '[backdrop-filter:blur(1px)]')}
-          />
-        )}
+        <div key='modal-overlay' onClick={handleMaskClick} className={cx(s.overlay)} />
 
         {/* Modal Body */}
         <div key='modal-body' className={cx(s.modalBody)}>
