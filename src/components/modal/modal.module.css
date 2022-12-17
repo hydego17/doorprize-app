@@ -16,11 +16,10 @@
 }
 
 .modalBody {
-  @apply animate-show relative w-full bg-white max-w-[500px];
+  @apply animate-show relative w-full bg-white max-w-[650px];
   @apply rounded-lg overflow-hidden;
 }
 
 .modalContent {
-  @apply pt-3 pb-6 px-5  lg:pb-5 w-full;
-  @apply h-full overflow-y-auto;
+  @apply w-full h-full overflow-y-auto;
 }

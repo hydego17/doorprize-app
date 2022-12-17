@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { createPortal } from 'react-dom';
-
+import React from 'react';
 import { cx } from '@/utils';
 import s from './modal.module.css';
 
@@ -32,12 +30,6 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     },
     ref
   ) => {
-    // Set container to inject the portal (client-side only)
-    const [container, setContainer] = useState<HTMLElement | null>(null);
-    useEffect(() => {
-      setContainer(document.body);
-    }, []);
-
     /**
      * Handle close modal
      */
@@ -53,28 +45,23 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
       handleClose();
     };
 
-    if (container) {
-      return createPortal(
-        <div ref={ref} role='dialog' data-opened={opened} style={{ zIndex }} className={cx(s.modal)} {...props}>
-          {/* Modal Overlay */}
-          {withOverlay && (
-            <div
-              key='modal-overlay'
-              onClick={handleMaskClick}
-              className={cx(s.overlay, overlayBlur && '[backdrop-filter:blur(1px)]')}
-            />
-          )}
+    return (
+      <div ref={ref} role='dialog' data-opened={opened} style={{ zIndex }} className={cx(s.modal)} {...props}>
+        {/* Modal Overlay */}
+        {withOverlay && (
+          <div
+            key='modal-overlay'
+            onClick={handleMaskClick}
+            className={cx(s.overlay, overlayBlur && '[backdrop-filter:blur(1px)]')}
+          />
+        )}
 
-          {/* Modal Body */}
-          <div key='modal-body' className={cx(s.modalBody)}>
-            <div className={cx(s.modalContent)}>{children}</div>
-          </div>
-        </div>,
-        document.body
-      );
-    }
-
-    return null;
+        {/* Modal Body */}
+        <div key='modal-body' className={cx(s.modalBody)}>
+          <div className={cx(s.modalContent)}>{children}</div>
+        </div>
+      </div>
+    );
   }
 );
 
