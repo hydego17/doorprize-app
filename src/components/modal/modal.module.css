@@ -4,7 +4,7 @@
 }
 
 .modal[data-opened='true'] {
-  @apply opacity-100 visible pointer-events-none;
+  @apply opacity-100 visible pointer-events-auto;
 }
 
 .modal[data-opened='false'] {
