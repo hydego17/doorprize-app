@@ -16,7 +16,7 @@ type LazyOptions = {
 /**
  * lazyload utility for code splitting.
  */
-export default function lazyload<P = {}>(loader: Loader<P>, options?: LazyOptions): React.ComponentType<P> {
+export function lazyload<P = {}>(loader: Loader<P>, options?: LazyOptions): React.ComponentType<P> {
   // invoke lazy import from loader
   const Component = React.lazy(loader as LazyLoader<P>);
 

@@ -1,18 +1,21 @@
 import { useState } from 'react';
 import { useRandomReveal } from 'react-random-reveal';
+import Confetti from 'react-confetti';
 
 import { useStore, useUpdateStore } from '@/store';
 import { getRandomInt } from '@/utils';
 import type { Participant } from '@/types';
+import Modal from '@/components/modal';
 
-export default function RandomReveal() {
+export default function Lottery() {
   const setStore = useUpdateStore();
   const { participants } = useStore();
 
   const isReady = !!participants.length;
-  const maxDigits = participants[0]?.slot?.length;
+  // const maxDigits = participants[0]?.slot?.length;
 
   const [winner, setWinner] = useState<Participant | undefined>();
+  const [winnerModalOpened, setModalOpened] = useState(false);
 
   const handleStart = () => {
     if (!isReady) return;
@@ -26,7 +29,9 @@ export default function RandomReveal() {
 
   const handleShowWinner = () => {
     if (!winner) return;
-    console.log('WINNER: ', winner.name);
+    setTimeout(() => {
+      setModalOpened(true);
+    }, 500);
   };
 
   const characters = useRandomReveal({
@@ -73,6 +78,24 @@ export default function RandomReveal() {
           Start
         </button>
       </div>
+
+      <Modal opened={winnerModalOpened} withOverlay={true} overlayBlur={false}>
+        <div className='text-center py-8'>
+          <div className='space-y-2'>
+            <div className='font-medium text-slate-600'>Selamat kepada pemenang:</div>
+            <div className='text-4xl font-bold'>{winner?.name}</div>
+          </div>
+
+          <hr className='my-6' />
+
+          <div className='space-y-2'>
+            <div className='font-medium text-slate-600'>Nomor undian:</div>
+            <div className='text-4xl font-bold'>{winner?.slot}</div>
+          </div>
+        </div>
+      </Modal>
+
+      {winnerModalOpened && <Confetti />}
     </div>
   );
 }

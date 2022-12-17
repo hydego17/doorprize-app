@@ -117,7 +117,7 @@ export default function FormSection() {
                 value={input}
                 onChange={(e) => handleChange(e.target.value)}
                 className={cx(
-                  'border w-full rounded',
+                  'p-2 border w-full rounded',
                   error ? 'ring-1 ring-red-500 border-red-500 focus:outline-red-500' : ''
                 )}
                 rows={6}

@@ -1,6 +1,5 @@
 import { useStore } from '@/store';
-
-import RandomReveal from '@/components/random-reveal';
+import Lottery from './components/lottery';
 
 export default function HomePage() {
   const { background } = useStore();
@@ -12,7 +11,7 @@ export default function HomePage() {
       <section className='w-full'>
         <div className='min-h-[100px] centered p-6'>
           <section className='w-full max-w-[500px]'>
-            <RandomReveal />
+            <Lottery />
           </section>
         </div>
       </section>

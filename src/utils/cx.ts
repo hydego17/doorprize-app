@@ -48,5 +48,3 @@ export function cx(...inputs: ClassValue[]) {
   }
   return str;
 }
-
-export default cx;

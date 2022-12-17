@@ -1,2 +1,3 @@
 export * from './number';
-export { default as cx } from './cx';
+export * from './cx';
+export * from './lazyload';
