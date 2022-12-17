@@ -46,7 +46,7 @@ export default function SlotComponent() {
 
       if (boxes && boxesClone) {
         if (!firstInit) {
-          const arr = [];
+          const arr: any[] = [];
           for (let n = 0; n < groups; n++) {
             arr.push(...items);
           }
