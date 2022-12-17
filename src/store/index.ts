@@ -10,7 +10,7 @@ type Store = {
 const globalStore = atomWithStorage<Store>('store', {
   participants: [],
   winners: [],
-  background: '/assets/bg-phr.jpg',
+  background: '/assets/phr-bg.jpg',
 });
 
 export const useStore = () => useAtomValue(globalStore);

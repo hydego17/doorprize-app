@@ -1,7 +1,8 @@
-import { useStore, useUpdateStore } from '@/store';
-import { Participant } from '@/types';
-import { cx } from '@/utils';
 import React, { useState } from 'react';
+
+import { cx } from '@/utils';
+import { useStore, useUpdateStore } from '@/store';
+import type { Participant } from '@/types';
 
 function leftFillNum(num: number, targetLength: number) {
   return num.toString().padStart(targetLength, String(0));
@@ -18,7 +19,7 @@ function formatParticipantData(input: string) {
         let slotNum = dataEntry[0] ?? '0';
         let name = dataEntry[1] ?? '';
 
-        if (!name || !slotNum || isNaN(Number(slotNum))) {
+        if (!name || !slotNum) {
           reject('Wrong format!');
         }
 

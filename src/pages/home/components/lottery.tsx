@@ -2,12 +2,19 @@ import { useState } from 'react';
 import { useRandomReveal } from 'react-random-reveal';
 import Confetti from 'react-confetti';
 import { TbX } from 'react-icons/tb';
-
 import { useStore, useUpdateStore } from '@/store';
+import { createAudio } from '@/utils/audio';
 import { getRandomInt } from '@/utils';
 import type { Participant } from '@/types';
-
 import Modal from '@/components/modal';
+
+const winnerAudio = createAudio('winner');
+
+const slotAudio = createAudio('slot', {
+  sprite: {
+    slot: [0, 4062],
+  },
+});
 
 const SlotBoxes = ({ characters }) => {
   return (
@@ -30,7 +37,7 @@ const SlotBoxes = ({ characters }) => {
 const NumberSlot = ({ number, onComplete }) => {
   const winnerSlotNumber = useRandomReveal({
     isPlaying: true,
-    duration: 2,
+    duration: 4,
     characters: number,
     revealEasing: 'easeOutQuad',
     characterSet: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
@@ -41,18 +48,34 @@ const NumberSlot = ({ number, onComplete }) => {
   return <SlotBoxes characters={winnerSlotNumber} />;
 };
 
+const statusLabelMap = {
+  loading: 'LOADING...',
+  done: 'DONE',
+  idle: 'START',
+};
+
 export default function Lottery() {
   const setStore = useUpdateStore();
   const { participants } = useStore();
 
   const isReady = !!participants.length;
-  // const maxDigits = participants[0]?.slot?.length;
 
+  const [status, setStatus] = useState('idle');
   const [winner, setWinner] = useState<Participant | undefined>();
   const [winnerModalOpened, setModalOpened] = useState(false);
 
+  const handleReset = () => {
+    setStatus('idle');
+    setModalOpened(false);
+    setWinner(undefined);
+  };
+
   const handleStart = () => {
     if (!isReady) return;
+    if (status !== 'idle') return;
+
+    setStatus('loading');
+    slotAudio.play('slot');
 
     let maxNumber = participants.length;
     let generatedIndex = getRandomInt(1, maxNumber);
@@ -61,21 +84,7 @@ export default function Lottery() {
     setWinner(picked);
   };
 
-  const handleShowWinner = () => {
-    if (!winner) return;
-    setTimeout(() => {
-      setModalOpened(true);
-    }, 500);
-  };
-
-  const handleReset = () => {
-    setModalOpened(false);
-    setWinner(undefined);
-  };
-
-  const handleFinish = () => {
-    handleShowWinner();
-
+  const handleFinishSlotAnimation = () => {
     if (winner) {
       setStore((prev) => ({
         ...prev,
@@ -83,21 +92,28 @@ export default function Lottery() {
         winners: [...prev.winners, winner],
       }));
     }
+
+    setStatus('done');
+
+    setTimeout(() => {
+      setModalOpened(true);
+      winnerAudio.play();
+    }, 750);
   };
 
   return (
     <div>
       <div>
         {winner ? (
-          <NumberSlot number={winner.slot} onComplete={handleFinish} />
+          <NumberSlot number={winner.slot} onComplete={handleFinishSlotAnimation} />
         ) : (
           <SlotBoxes characters={['0', '0', '0', '0']} />
         )}
       </div>
 
       <div className='mt-4 space-y-4'>
-        <button disabled={!isReady} className='btn w-full' onClick={handleStart}>
-          Start
+        <button disabled={!isReady || status === 'loading'} className='btn btn-lg w-full' onClick={handleStart}>
+          {statusLabelMap[status]}
         </button>
       </div>
 
