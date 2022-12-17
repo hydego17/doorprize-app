@@ -12,7 +12,7 @@ const winnerAudio = createAudio('winner');
 
 const slotAudio = createAudio('slot', {
   sprite: {
-    slot: [0, 4062],
+    slot: [0, 4055],
   },
 });
 
