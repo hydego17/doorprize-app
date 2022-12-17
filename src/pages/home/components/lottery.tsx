@@ -10,7 +10,7 @@ import type { Participant } from '@/types';
 import Modal from '@/components/modal';
 
 const slotAudio = createAudio('slot', {
-  sprite: { slot: [0, 4055] },
+  sprite: { slot: [0, 4060] },
 });
 
 const winnerAudio = createAudio('winner');
