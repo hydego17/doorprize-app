@@ -1,6 +1,5 @@
 import { useUpdateAtom, useAtomValue, atomWithStorage } from 'jotai/utils';
 import type { Participant } from '@/types';
-// import defaultParticipant from '@/participants.json';
 
 type Store = {
   participants: Participant[];

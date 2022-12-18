@@ -15,16 +15,11 @@ function formatParticipantData(input: string) {
       .replace(/\t/g, ' ')
       .split(/\r?\n/)
       .map((entry) => {
-        let dataEntry = entry.split(' ');
+        let dataEntry = entry.split(/\s+/g);
         let slotNum = dataEntry[0] ?? '0';
         let name = dataEntry[1] ?? '';
-
-        if (!name || !slotNum) {
-          reject('Wrong format!');
-        }
-
+        if (!name || !slotNum) reject('Wrong format!');
         let slot = leftFillNum(Number(slotNum), 4);
-
         return { slot, name } as Participant;
       });
 
@@ -50,20 +45,24 @@ export default function FormSection() {
 
     setError(null);
 
-    await formatParticipantData(input)
-      .then((data) => {
-        setStore((prev) => ({
-          ...prev,
-          participants: data,
-          winners: [],
-        }));
+    try {
+      // format input
+      let data = await formatParticipantData(input);
 
-        setInput('');
-        setIsEdit(false);
-      })
-      .catch((err) => {
-        setError(err as string);
-      });
+      // set into store
+      setStore((prev) => ({
+        ...prev,
+        participants: data,
+        winners: [],
+      }));
+
+      // reset state
+      setInput('');
+      setIsEdit(false);
+      //
+    } catch (err) {
+      setError(err as string);
+    }
   };
 
   const handleChange = (value: string) => {
@@ -104,9 +103,14 @@ export default function FormSection() {
           </div>
         )}
       </div>
-      <div className='mt-8'>
+
+      <hr className='my-4' />
+
+      <div>
         {isEdit ? (
           <form onSubmit={handleSaveInput} className='animate-show space-y-4'>
+            <h2 className='font-bold'>Add New Participants</h2>
+
             <div>
               <textarea
                 autoFocus
@@ -114,7 +118,7 @@ export default function FormSection() {
                   e.currentTarget.scrollIntoView();
                 }}
                 name='participant'
-                placeholder='copy from sheet + paste here'
+                placeholder='copy from sheet or excel + paste here'
                 value={input}
                 onChange={(e) => handleChange(e.target.value)}
                 className={cx(
@@ -127,9 +131,14 @@ export default function FormSection() {
               {error && <div className='text-red-500 text-sm font-medium'>{error}</div>}
             </div>
 
-            <button type='submit' disabled={!input} className='btn w-full'>
-              Save
-            </button>
+            <div className='flex gap-2'>
+              <button type='button' onClick={() => setIsEdit(false)} className='btn-outline w-full'>
+                Cancel
+              </button>
+              <button type='submit' disabled={!input} className='btn w-full'>
+                Save
+              </button>
+            </div>
           </form>
         ) : (
           <div className='animate-show'>

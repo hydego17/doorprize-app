@@ -10,13 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "fscreen": "^1.2.0",
     "howler": "^2.2.3",
     "image-conversion": "^2.1.1",
     "jotai": "^1.11.2",
     "react": "^18.2.0",
     "react-confetti": "^6.1.0",
     "react-dom": "^18.2.0",
-    "react-full-screen": "^1.1.1",
     "react-icons": "^4.7.1",
     "react-random-reveal": "^2.0.0",
     "react-router-dom": "^6.4.5"

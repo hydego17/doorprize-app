@@ -14,6 +14,7 @@ specifiers:
   eslint-plugin-prettier: ^4.2.1
   eslint-plugin-react: ^7.31.11
   eslint-plugin-react-hooks: ^4.6.0
+  fscreen: ^1.2.0
   howler: ^2.2.3
   image-conversion: ^2.1.1
   jotai: ^1.11.2
@@ -22,7 +23,6 @@ specifiers:
   react: ^18.2.0
   react-confetti: ^6.1.0
   react-dom: ^18.2.0
-  react-full-screen: ^1.1.1
   react-icons: ^4.7.1
   react-random-reveal: ^2.0.0
   react-router-dom: ^6.4.5
@@ -31,13 +31,13 @@ specifiers:
   vite: ^4.0.0
 
 dependencies:
+  fscreen: 1.2.0
   howler: 2.2.3
   image-conversion: 2.1.1
   jotai: 1.11.2_react@18.2.0
   react: 18.2.0
   react-confetti: 6.1.0_react@18.2.0
   react-dom: 18.2.0_react@18.2.0
-  react-full-screen: 1.1.1_react@18.2.0
   react-icons: 4.7.1_react@18.2.0
   react-random-reveal: 2.0.0_react@18.2.0
   react-router-dom: 6.4.5_biqbaboplfbrettd7655fr4n2y
@@ -1977,16 +1977,6 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
-    dev: false
-
-  /react-full-screen/1.1.1_react@18.2.0:
-    resolution: {integrity: sha512-xoEgkoTiN0dw9cjYYGViiMCBYbkS97BYb4bHPhQVWXj1UnOs8PZ1rPzpX+2HMhuvQV1jA5AF9GaRbO3fA5aZtg==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      react: '>= 16.8.0'
-    dependencies:
-      fscreen: 1.2.0
-      react: 18.2.0
     dev: false
 
   /react-icons/4.7.1_react@18.2.0:
