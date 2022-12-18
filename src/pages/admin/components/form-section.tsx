@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { cx } from '@/utils';
+import { cx } from '@/utils/cx';
 import { useStore, useUpdateStore } from '@/store';
 import type { Participant } from '@/types';
 

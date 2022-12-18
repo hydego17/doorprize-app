@@ -4,8 +4,8 @@ import Confetti from 'react-confetti';
 import { TbX } from 'react-icons/tb';
 
 import { useStore, useUpdateStore } from '@/store';
-import { createAudio } from '@/utils/audio';
-import { getRandomInt } from '@/utils';
+import { createAudio } from '@/lib/audio';
+import { getRandomInt } from '@/utils/number';
 import type { Participant } from '@/types';
 import Modal from '@/components/modal';
 

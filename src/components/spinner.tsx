@@ -1,5 +1,5 @@
 import React from 'react';
-import { cx } from '@/utils';
+import { cx } from '@/utils/cx';
 
 type FullSpinnerProps = React.ComponentProps<'div'> & {
   visible?: boolean;

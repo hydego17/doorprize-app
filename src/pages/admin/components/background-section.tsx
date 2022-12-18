@@ -1,7 +1,8 @@
 import { useRef, useState } from 'react';
 
+import { cx } from '@/utils/cx';
+import { compressImage } from '@/utils/file';
 import { useStore, useUpdateStore } from '@/store';
-import { compressImage, cx } from '@/utils';
 import Spinner from '@/components/spinner';
 
 const MAX_FILE_SIZE = 10485760; // 10MB
