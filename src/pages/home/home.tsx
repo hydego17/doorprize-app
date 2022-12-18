@@ -1,7 +1,11 @@
 import { FullScreen, useFullScreenHandle } from 'react-full-screen';
 import { useStore } from '@/store';
+
 import Lottery from './components/lottery';
 
+/**
+ * Doorprize user-facing page
+ */
 export default function HomePage() {
   const { background } = useStore();
 

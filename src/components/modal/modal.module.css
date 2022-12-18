@@ -23,3 +23,13 @@
 .modalContent {
   @apply w-full h-full overflow-y-auto;
 }
+
+.modal-sm {
+  @apply max-w-[500px];
+}
+.modal-md {
+  @apply max-w-[650px];
+}
+.modal-lg {
+  @apply max-w-[850px];
+}

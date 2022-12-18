@@ -84,7 +84,7 @@ export default function Lottery() {
         </button>
       </div>
 
-      <Modal opened={winnerModalOpened} closeOnClickOutside={false}>
+      <Modal size='md' opened={winnerModalOpened} closeOnClickOutside={false}>
         <div className='text-center p-8 relative'>
           <button
             role='button'

@@ -7,6 +7,7 @@ interface ModalProps {
   opened: boolean;
   onClose?(): void;
   closeOnClickOutside?: boolean;
+  size?: 'sm' | 'md' | 'lg';
   zIndex?: number;
 }
 
@@ -14,7 +15,7 @@ interface ModalProps {
  * Generic modal component used in our application.
  */
 const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
-  ({ children, opened, onClose, closeOnClickOutside = true, zIndex, ...props }, ref) => {
+  ({ children, opened, onClose, closeOnClickOutside = true, size = 'sm', zIndex, ...props }, ref) => {
     /**
      * Handle close modal
      */
@@ -36,7 +37,7 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
         <div key='modal-overlay' onClick={handleMaskClick} className={cx(s.overlay)} />
 
         {/* Modal Body */}
-        <div key='modal-body' className={cx(s.modalBody)}>
+        <div key='modal-body' className={cx(s.modalBody, s[`modal-${size}`])}>
           <div className={cx(s.modalContent)}>{children}</div>
         </div>
       </div>
