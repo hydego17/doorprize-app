@@ -1,9 +1,41 @@
-export default function FullSpinner() {
+import React from 'react';
+import { cx } from '@/utils';
+
+type FullSpinnerProps = React.ComponentProps<'div'> & {
+  visible?: boolean;
+  fullScreen?: boolean;
+  size?: 'sm' | 'md' | 'lg';
+};
+
+const sizeMap = {
+  sm: '30px',
+  md: '45px',
+  lg: '60px',
+};
+
+export default function Spinner({
+  visible = true,
+  fullScreen = true,
+  size = 'sm',
+  className,
+  ...props
+}: FullSpinnerProps) {
   return (
-    <div className='animate-show h-screen w-full centered'>
+    <div
+      className={cx(
+        'animate-show w-full centered transition-opacity duration-200',
+        fullScreen ? 'h-screen' : 'h-auto',
+        visible ? 'opacity-100 visible pointer-events-auto' : 'opacity-0 invisible pointer-events-none',
+        className
+      )}
+      {...props}
+    >
       <svg
         aria-hidden='true'
-        className='w-10 h-10 text-gray-200 animate-spin  fill-blue-600'
+        style={{
+          width: sizeMap[size],
+        }}
+        className='aspect-square text-gray-200 animate-spin  fill-blue-600'
         viewBox='0 0 100 101'
         fill='none'
         xmlns='http://www.w3.org/2000/svg'

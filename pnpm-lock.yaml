@@ -15,6 +15,7 @@ specifiers:
   eslint-plugin-react: ^7.31.11
   eslint-plugin-react-hooks: ^4.6.0
   howler: ^2.2.3
+  image-conversion: ^2.1.1
   jotai: ^1.11.2
   postcss: ^8.4.20
   prettier: ^2.8.1
@@ -31,6 +32,7 @@ specifiers:
 
 dependencies:
   howler: 2.2.3
+  image-conversion: 2.1.1
   jotai: 1.11.2_react@18.2.0
   react: 18.2.0
   react-confetti: 6.1.0_react@18.2.0
@@ -1396,6 +1398,10 @@ packages:
     resolution: {integrity: sha512-d2qQLzTJ9WxQftPAuEQpSPmKqzxePjzVbpAVv62AQ64NTL+wR4JkrVqR/LqFsFEUsHDAiId52mJteHDFuDkElA==}
     engines: {node: '>= 4'}
     dev: true
+
+  /image-conversion/2.1.1:
+    resolution: {integrity: sha512-hnMOmP7q2jxA+52FZ+wHNhg3fdFRlgfngsQH2JQHEQkafY7tj/8F15e6Rv/RxDegc872jvyaRHwMbkTZK1Cjbg==}
+    dev: false
 
   /import-fresh/3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}

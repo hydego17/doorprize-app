@@ -1,7 +1,7 @@
 import { lazyload } from '@/utils';
-import FullSpinner from '@/components/full-spinner';
+import Spinner from '@/components/spinner';
 
 const HomePage = lazyload(() => import('./home'), {
-  loading: () => <FullSpinner />,
+  loading: () => <Spinner fullScreen size='md' />,
 });
 export default HomePage;

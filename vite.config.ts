@@ -19,7 +19,6 @@ function renderChunks(deps: Record<string, string>) {
 
 export default defineConfig({
   plugins: [react()],
-
   build: {
     rollupOptions: {
       output: {
@@ -30,10 +29,7 @@ export default defineConfig({
       },
     },
   },
-
-  /**
-   * defining aliases
-   */
+  root: './',
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),

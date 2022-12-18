@@ -115,6 +115,20 @@ export default function Lottery() {
   );
 }
 
+const NumberSlot = ({ number, onComplete }) => {
+  const winnerSlotNumber = useRandomReveal({
+    isPlaying: true,
+    duration: 4,
+    characters: number,
+    revealEasing: 'easeOutQuad',
+    characterSet: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
+    revealDuration: 0.025,
+    onComplete,
+  });
+
+  return <SlotBoxes characters={winnerSlotNumber} />;
+};
+
 const SlotBoxes = ({ characters }) => {
   return (
     <div className='flex'>
@@ -131,18 +145,4 @@ const SlotBoxes = ({ characters }) => {
       })}
     </div>
   );
-};
-
-const NumberSlot = ({ number, onComplete }) => {
-  const winnerSlotNumber = useRandomReveal({
-    isPlaying: true,
-    duration: 4,
-    characters: number,
-    revealEasing: 'easeOutQuad',
-    characterSet: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
-    revealDuration: 0.025,
-    onComplete,
-  });
-
-  return <SlotBoxes characters={winnerSlotNumber} />;
 };

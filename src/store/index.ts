@@ -1,5 +1,6 @@
 import { useUpdateAtom, useAtomValue, atomWithStorage } from 'jotai/utils';
 import type { Participant } from '@/types';
+// import defaultParticipant from '@/participants.json';
 
 type Store = {
   participants: Participant[];
@@ -10,7 +11,7 @@ type Store = {
 const globalStore = atomWithStorage<Store>('store', {
   participants: [],
   winners: [],
-  background: '/assets/phr-bg.jpg',
+  background: '/assets/PHR-background.jpg',
 });
 
 export const useStore = () => useAtomValue(globalStore);
