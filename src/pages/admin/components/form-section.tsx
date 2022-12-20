@@ -14,10 +14,12 @@ function formatParticipantData(input: string) {
       .toString()
       .replace(/\t/g, ' ')
       .split(/\r?\n/)
-      .map((entry) => {
-        let [slotNum, ...names] = entry.split(/\s+/g);
+      .map((personData) => {
+        let [slotNum, ...names] = personData.split(/\s+/g);
         let name = names.join(' ');
-        if (!name || !slotNum) reject('Wrong format!');
+        if (!name || !slotNum || isNaN(Number(slotNum))) {
+          reject('Wrong format!');
+        }
         let slot = leftFillNum(Number(slotNum), 4);
         return { slot, name } as Participant;
       });
