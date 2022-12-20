@@ -15,9 +15,8 @@ function formatParticipantData(input: string) {
       .replace(/\t/g, ' ')
       .split(/\r?\n/)
       .map((entry) => {
-        let dataEntry = entry.split(/\s+/g);
-        let slotNum = dataEntry[0] ?? '0';
-        let name = dataEntry[1] ?? '';
+        let [slotNum, ...names] = entry.split(/\s+/g);
+        let name = names.join(' ');
         if (!name || !slotNum) reject('Wrong format!');
         let slot = leftFillNum(Number(slotNum), 4);
         return { slot, name } as Participant;
