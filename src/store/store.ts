@@ -1,5 +1,6 @@
 import { useUpdateAtom, useAtomValue, atomWithStorage } from 'jotai/utils';
 import type { Participant } from '@/types';
+import participantsData from '../participants.json';
 
 type Store = {
   participants: Participant[];
@@ -8,7 +9,7 @@ type Store = {
 };
 
 const defaultValue: Store = {
-  participants: [],
+  participants: participantsData,
   winners: [],
   background: '/assets/PHR-background.jpg',
 };

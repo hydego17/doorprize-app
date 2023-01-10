@@ -93,7 +93,7 @@ export default function BackgroundSection() {
           </div>
 
           <div className='mt-2 text-xs text-center'>
-            {error ? <span className='text-red-500'>{error}</span> : <span>Click to change background</span>}
+            {error ? <span className='text-red-500'>{error}</span> : <span>Click image to change background</span>}
           </div>
         </div>
       </header>
